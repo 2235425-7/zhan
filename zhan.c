@@ -5,13 +5,14 @@
 #define MAXSIZE 100
 #define overflow -2
 #define ok 1
+//定义栈
 typedef int selemtype;
  typedef struct{
     selemtype *base;
     selemtype *top;
     int stacksize;
  }sqstack;
-
+//初始化栈
 int initstack(sqstack *s){
     s->base = (selemtype*) malloc(MAXSIZE*sizeof(selemtype));
 
@@ -21,6 +22,7 @@ int initstack(sqstack *s){
     printf("栈初始化完成\n");
     return ok;
 }
+//入栈
 int push(sqstack *s,selemtype e){
     if(s->top-s->base == s->stacksize){
         printf("栈满\n");
@@ -30,6 +32,7 @@ int push(sqstack *s,selemtype e){
     s->top++;
         return ok;
 }
+//出栈
 int pop(sqstack *s,selemtype *e){
     if(s->top == s->base){
         printf("栈空\n");
@@ -39,6 +42,7 @@ int pop(sqstack *s,selemtype *e){
     *e=*s->top;
         return ok;
 }
+//打印栈
 void printstack(sqstack *s) {
      if (s->base == s->top) {
          printf("栈为空\n");
@@ -52,7 +56,7 @@ void printstack(sqstack *s) {
      }
      printf("\n");
  }
-
+//销毁栈
 int destorystack(sqstack *s){
     if(s->base){
         free(s->base);
@@ -65,7 +69,7 @@ int destorystack(sqstack *s){
     printf("销毁失败\n");
     return error;
 }
-
+//主函数测试
 int main (){
     sqstack stack;
     selemtype e;
